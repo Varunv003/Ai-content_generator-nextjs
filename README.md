@@ -74,18 +74,6 @@ This project is an AI Content Generation Dashboard built using Next.js, Drizzle 
 
 ## Database Schema
 
-The database schema is defined in \`utils/schema.tsx\`:
-\`\`\`typescript
-import { pgTable, serial, varchar, text } from "drizzle-orm/pg-core";
-
-export const AiOutput = pgTable('aiOutput',{
-    id: serial('id').primaryKey(),
-    formData: varchar('formdata').notNull(),
-    aiResponse: text('aiResponse'),
-    templateSlug: varchar('templateSlug').notNull(),
-    createdBy: varchar('createdBy').notNull(),
-    createdAt: varchar('createdAt'),
-});
-\`\`\`
+The database schema is defined in \`utils/schema.tsx\`
 
 
