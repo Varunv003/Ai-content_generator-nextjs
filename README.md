@@ -1,36 +1,91 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# AI Content Generation 
 
-## Getting Started
+![AI Content Generation Dashboard](public/dashboard.png)
 
-First, run the development server:
+This project is an AI Content Generation Dashboard built using Next.js, Drizzle ORM, NEON PostgreSQL, Tailwind CSS, and TypeScript (tsx). The dashboard allows users to generate AI content and view their history of generated content.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Tech Stack
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Next.js**: A React framework for production.
+- **Drizzle ORM**: A TypeScript ORM for PostgreSQL.
+- **NEON PostgreSQL**: A serverless PostgreSQL database.
+- **Tailwind CSS**: A utility-first CSS framework for styling.
+- **TypeScript**: A superset of JavaScript with static types.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Features
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- **AI Content Generation**: Generate content using the Google Gemini API.
+- **User Authentication**: Secure user authentication using Clerk.
+- **Content History**: View the history of AI-generated content, filtered by the user's email.
+- **Responsive Design**: Fully responsive design using Tailwind CSS.
+- **Copy to Clipboard**: Easily copy AI-generated responses to the clipboard.
 
-## Learn More
+## Setup and Installation
 
-To learn more about Next.js, take a look at the following resources:
+### Prerequisites
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Node.js
+- PostgreSQL
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### Installation
 
-## Deploy on Vercel
+1. **Clone the Repository**
+    \`\`\`bash
+    git clone https://github.com/yourusername/ai-content-generation-dashboard.git
+    cd ai-content-generation-dashboard
+    \`\`\`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+2. **Install Dependencies**
+    \`\`\`bash
+    npm install
+    \`\`\`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+3. **Set Up Environment Variables**
+    Create a \`.env.local\` file in the root directory and add the following environment variables:
+    \`\`\`env
+    NEXT_PUBLIC_DRIZZLE_DB_URL=your-neon-postgresql-url
+    NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your-clerk-publishable-key
+    CLERK_SECRET_KEY=your-clerk-secret-key
+    GOOGLE_GEMINI_API_KEY=your-google-gemini-api-key
+
+    NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
+    NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
+    \`\`\`
+
+4. **Run Database Migrations**
+    \`\`\`bash
+    npm run db:migrate
+    \`\`\`
+
+5. **Start the Development Server**
+    \`\`\`bash
+    npm run dev
+    \`\`\`
+
+6. **Visit the Application**
+    Open your browser and go to \`http://localhost:3000\`.
+
+## Folder Structure
+
+- \`components/\`: React components used in the project.
+- \`pages/\`: Next.js pages, including the history page.
+- \`styles/\`: Global styles and Tailwind CSS configuration.
+- \`utils/\`: Utility files, including database configuration and schema.
+
+## Database Schema
+
+The database schema is defined in \`utils/schema.tsx\`:
+\`\`\`typescript
+import { pgTable, serial, varchar, text } from "drizzle-orm/pg-core";
+
+export const AiOutput = pgTable('aiOutput',{
+    id: serial('id').primaryKey(),
+    formData: varchar('formdata').notNull(),
+    aiResponse: text('aiResponse'),
+    templateSlug: varchar('templateSlug').notNull(),
+    createdBy: varchar('createdBy').notNull(),
+    createdAt: varchar('createdAt'),
+});
+\`\`\`
+
+
