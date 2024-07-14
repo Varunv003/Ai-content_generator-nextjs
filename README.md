@@ -31,7 +31,7 @@ This project is an AI Content Generation Dashboard built using Next.js, Drizzle 
 
 1. **Clone the Repository**
     \`\`\`bash
-    git clone https://github.com/yourusername/ai-content-generation-dashboard.git
+    git clone https://github.com/Varunv003/Ai-content_generator-nextjs
     cd ai-content-generation-dashboard
     \`\`\`
 
